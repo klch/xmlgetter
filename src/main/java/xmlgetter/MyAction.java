@@ -1,0 +1,6 @@
+package xmlgetter;
+
+interface MyAction {
+	
+
+}

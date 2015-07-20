@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+	<xsd:complexType name="orderType">
+		<xsd:sequence>
+			<xsd:element name="head" type="headType"></xsd:element>
+			<xsd:element name="body" type="bodyType"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:complexType name="headType">
+		<xsd:sequence>
+			<xsd:element name="sum" type="xsd:double"></xsd:element>
+			<xsd:element name="prim" type="xsd:string"></xsd:element>
+			<xsd:element name="firma" type="xsd:string"></xsd:element>
+			<xsd:element name="type" type="typeType"></xsd:element>
+			<xsd:element name="card_num" type="xsd:string" minOccurs="0"></xsd:element>
+			<xsd:element name="discount" type="xsd:double"></xsd:element>
+			<xsd:element name="orderdate" type="xsd:date"></xsd:element>
+			<xsd:element name="billDate" type="xsd:date" minOccurs="0"></xsd:element>
+			<xsd:element name="billNum" type="xsd:int" minOccurs="0"></xsd:element>
+			<xsd:element name="status" type="statusType"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="bodyType">
+		<xsd:sequence>
+			<xsd:element name="item" type="itemType" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+	<xsd:complexType name="itemType">
+		<xsd:sequence>
+			<xsd:element name="quant" type="xsd:int"></xsd:element>
+			<xsd:element name="price" type="xsd:double"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string"></xsd:attribute>
+	</xsd:complexType>
+
+	<xsd:element name="orders" type="ordersType"></xsd:element>
+
+	<xsd:complexType name="ordersType">
+		<xsd:sequence>
+			<xsd:element name="order" type="orderType" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="statusType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PREPARING" />
+			<xsd:enumeration value="RESERVED" />
+			<xsd:enumeration value="DONE" />
+			<xsd:enumeration value="MARKFORDEL" />
+			<xsd:enumeration value="DELETED" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="typeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="REALYZE_REPORT" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>
